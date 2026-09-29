@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Jenny Rose A. Delos Santos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#fbf7f7;--ink:#2a0f16;--mute:#7a6167;--line:#eadada;--rose:#800020;--panel:#fff}
+.dark{--bg:#170a0e;--ink:#f4eaed;--mute:#ab8f97;--line:#3a1d26;--rose:#e8708a;--panel:#221016}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:56rem;margin:0 auto;padding:0 1.5rem}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.mute{color:var(--mute)}
+.rose{color:var(--rose)}
+.link{border-bottom:1px solid var(--line);transition:.2s}
+.link:hover{border-color:var(--rose);color:var(--rose)}
+header{display:flex;justify-content:space-between;align-items:center;padding:2rem 0}
+nav{display:flex;align-items:center;gap:1.5rem;color:var(--mute)}
+nav a{text-transform:capitalize;transition:color .2s}
+nav a:hover{color:var(--ink)}
+#theme:hover{color:var(--rose)}
+.hero{padding:2.5rem 0 4rem}
+.hero-top{display:flex;flex-direction:column-reverse;align-items:flex-start;gap:1.5rem}
+h1{font-size:2.25rem;line-height:1.15;margin:0}
+.avatar{width:7rem;height:7rem;border-radius:50%;border:2px solid var(--rose);object-fit:cover;flex-shrink:0}
+.lead{margin:1.25rem 0 0;max-width:36rem;font-size:1.125rem;color:var(--mute)}
+svg.diagram{width:100%;margin-top:2.5rem}
+section.block{border-top:1px solid var(--line);padding:4rem 0}
+h2{font-size:1.5rem;margin:0 0 1.5rem}
+.block p{max-width:42rem;color:var(--mute);margin:0 0 1rem}
+.row{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.row .k{width:7rem;flex-shrink:0;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:.1rem .75rem;font-size:.875rem;color:var(--ink)}
+h3.sub{font-size:1.125rem;margin:3rem 0 0;color:var(--mute);font-weight:500}
+.proj{display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;width:100%;padding:1.5rem 0;text-align:left;border-bottom:1px solid var(--line)}
+.proj b{display:block;font-size:1.125rem;transition:color .2s}
+.proj span.d{display:block;margin-top:.25rem;max-width:36rem;color:var(--mute)}
+.proj .arr{margin-top:.25rem;color:var(--mute);transition:.2s}
+.proj:hover b,.proj:hover .arr{color:var(--rose)}
+.proj:hover .arr{transform:translateX(4px)}
+.contact div{display:flex;gap:2rem;margin-bottom:.75rem}
+.contact .k{width:7rem;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:2.5rem 0;font-size:.875rem;color:var(--mute)}
+/* side panel */
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .3s}
+#overlay.show{opacity:1;pointer-events:auto}
+#panel{position:fixed;right:0;top:0;height:100%;width:100%;max-width:28rem;overflow-y:auto;background:var(--panel);border-left:1px solid var(--line);padding:2rem;box-shadow:-10px 0 40px rgba(0,0,0,.25);transform:translateX(100%);transition:transform .3s}
+#panel.show{transform:none}
+#panel h3{margin:.25rem 0 1rem;font-size:1.5rem}
+#panel h4{margin:0 0 .5rem}
+#panel ul{color:var(--mute);padding-left:1.25rem;margin:0 0 1.5rem}
+#panel .close{display:block;margin-bottom:2rem;color:var(--mute)}
+#panel .close:hover{color:var(--rose)}
+#panel .chips{margin-bottom:2rem}
+/* diagram animation */
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.line{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s ease forwards}
+.node{opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .5s ease forwards;cursor:pointer}
+.node rect{transition:stroke .2s}
+.node:hover rect,.node:focus-visible rect{stroke:var(--rose);stroke-width:2.5}
+.node:focus-visible{outline:none}
+@media(prefers-reduced-motion:reduce){.line,.node{animation:none;stroke-dashoffset:0;opacity:1}}
+@media(min-width:640px){
+  h1{font-size:3.75rem}
+  .hero-top{flex-direction:row;align-items:center;justify-content:space-between;gap:2.5rem}
+  .avatar{width:10rem;height:10rem}
+  .row{flex-direction:row;gap:2rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <b>Jenny Rose<span class="rose">.</span></b>
+    <nav>
+      <a href="#about">about</a><a href="#stack">stack</a><a href="#projects">projects</a><a href="#contact">contact</a>
+      <button id="theme" aria-label="Toggle dark mode"></button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-top">
+      <h1 id="name"></h1>
+      <img class="avatar" src="profile.jpg" alt="Photo of Jenny Rose" width="480" height="480" />
+    </div>
+    <p class="lead">3rd year BSIT student who likes building systems, figuring out how they should work, and designing them to be clear to use.</p>
+    <svg id="diagram" class="diagram" viewBox="0 0 640 200" role="group" aria-label="Three systems merged into Cafe Cuadro. Select one to see details."></svg>
+    <p class="mute" style="margin:.5rem 0 0;font-size:.875rem">Select a system to see what it does.</p>
+  </section>
+
+  <section id="about" class="block">
+    <h2>About</h2>
+    <p>I'm a 3rd year BS Information Technology student at the National College of Science and Technology. I enjoy three parts of a project the most: developing it, analyzing how the system should work, and designing it.</p>
+    <p>I've worked on a POS, an HRMS with payroll, and an inventory and finance system, which are now merged into Cafe Cuadro. I've also built a library management system with Python. I'm looking for opportunities to collaborate with others and gain practical experience.</p>
+  </section>
+
+  <section id="stack" class="block"><h2>Tech Stack</h2><div id="stackList"></div></section>
+
+  <section id="projects" class="block">
+    <h2>Projects</h2>
+    <div id="projectList"></div>
+    <h3 class="sub">Other Projects</h3>
+    <div id="otherList"></div>
+    <p style="margin-top:2rem">More on <a class="link" id="ghMore" target="_blank" rel="noreferrer">GitHub</a>.</p>
+  </section>
+
+  <section id="contact" class="block contact">
+    <h2>Contact</h2>
+    <p>Want to work together or just say hi? Email is the fastest way to reach me.</p>
+    <div><span class="k">Email</span><span><a class="link" id="mail"></a> <button id="copy" class="mute" style="margin-left:.75rem;font-size:.875rem">copy</button></span></div>
+    <div><span class="k">GitHub</span><a class="link" id="gh" target="_blank" rel="noreferrer"></a></div>
+    <div><span class="k">Instagram</span><a class="link" id="ig" target="_blank" rel="noreferrer"></a></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<div id="overlay"></div>
+<aside id="panel" role="dialog" aria-modal="true" aria-hidden="true"></aside>
+
+<script>
+/* ===== EDIT YOUR INFO HERE ===== */
+const ME = {
+  name: 'Jenny Rose A. Delos Santos',
+  email: 'jennyrosedelossantos73@gmail.com',
+  github: 'https://github.com/genierous',
+  instagram: 'https://instagram.com/genierows',
+};
+const STACK = {
+  Languages: ['PHP', 'JavaScript', 'HTML', 'CSS'],
+  Frameworks: ['React', 'Vue.js', 'Tailwind CSS'],
+  Databases: ['MySQL (phpMyAdmin)'],
+  Tools: ['Git', 'GitHub', 'VS Code', 'Figma'],
+};
+const PROJECTS = [
+  { id:'cafe', title:'Cafe Cuadro', short:'Cafe Cuadro', x:400, y:64, w:210, h:72, tag:'Merged system',
+    blurb:'One system that merges the HRMS with payroll, the POS, and the inventory, procurement and finance systems, with a single login and role-based access.',
+    features:['One login for every role: owner, HR, employees, cashier, inventory staff','POS with a self-order kiosk for customers','Inventory with recipes: each sale deducts ingredient stock','Procurement: purchase requests, purchase orders, deliveries','Finance: POS sales post as income, released payroll as expense','HRMS: recruitment, attendance, leaves, contracts, payroll'],
+    stack:['PHP','MySQL','phpMyAdmin'], repo:'https://github.com/genierous/cafe-integrated-system' },
+  { id:'pos', title:'POS System', short:'POS', x:20, y:10, w:190, h:48, tag:'Sales',
+    blurb:'Point-of-sale system for handling transactions at the counter.',
+    features:['Product selection and checkout','Payments and receipts','Sales records'],
+    stack:['PHP','MySQL'], repo:'https://github.com/genierous/pos' },
+  { id:'inv', title:'Inventory and Finance System', short:'Inventory + Finance', x:20, y:76, w:190, h:48, tag:'Inventory & Finance',
+    blurb:'Tracks stock levels and the money that moves with them.',
+    features:['Stock in and stock out','Purchases and expenses','Financial records'],
+    stack:['PHP','MySQL'], repo:'https://github.com/genierous/inv-and-finance' },
+  { id:'hrms', title:'HRMS with Payroll', short:'HRMS + Payroll', x:20, y:142, w:190, h:48, tag:'HR',
+    blurb:'Role-based HR system for recruitment, workforce management and payroll. A BSIT capstone project built with plain PHP, MySQL and Bootstrap.',
+    features:['Five roles: HR Manager, HR Staff, Employee Manager, Employee, Applicant','Recruitment: job posts, applications, interviews, offers','Attendance, leave requests, evaluations and tasks','Payroll and payslips, with PDF report export','Audit logs and email notifications'],
+    stack:['PHP','MySQL','Bootstrap','JavaScript'], repo:'https://github.com/genierous/hrms' },
+];
+// Separate from the Cafe Cuadro diagram
+const OTHER = [
+  { id:'library', title:'Library Management System', tag:'Library',
+    blurb:'Desktop app for managing a library\'s books, borrowers, and borrow and return transactions.',
+    features:['Login and logout with password hashing','Add, edit and delete books and borrowers','Issue and return books, with borrowing history','Audit log that records system activity','Organized in an MVC structure: database, modules, views'],
+    stack:['Python','Tkinter','MySQL'], repo:'https://github.com/genierous/library-management-system' },
+];
+/* ================================ */
+
+const $ = (id) => document.getElementById(id);
+const ALL = [...PROJECTS, ...OTHER];
+const cafe = PROJECTS[0], mods = PROJECTS.slice(1), nodes = [...mods, cafe];
+const chips = (arr, extra='') => arr.map(t => `<span class="chip">${t}</span>`).join('');
+
+// Basic info
+document.title = ME.name;
+$('name').textContent = ME.name;
+$('foot').textContent = '© 2026 ' + ME.name;
+$('ghMore').href = ME.github;
+$('mail').href = 'mailto:' + ME.email; $('mail').textContent = ME.email;
+$('gh').href = ME.github; $('gh').textContent = '@' + ME.github.split('/').pop();
+$('ig').href = ME.instagram; $('ig').textContent = '@' + ME.instagram.split('/').pop();
+
+// Stack
+$('stackList').innerHTML = Object.entries(STACK).map(([k, v]) =>
+  `<div class="row"><span class="k">${k}</span><div class="chips">${chips(v)}</div></div>`).join('');
+
+// Project list
+const listHtml = (arr) => arr.map(p =>
+  `<button class="proj" data-id="${p.id}"><span><b>${p.title}</b><span class="d">${p.blurb}</span></span><span class="arr">→</span></button>`).join('');
+$('projectList').innerHTML = listHtml(PROJECTS);
+$('otherList').innerHTML = listHtml(OTHER);
+
+// Diagram
+$('diagram').innerHTML =
+  `<g fill="none" stroke="var(--line)" stroke-width="2">${mods.map((p, i) =>
+    `<line class="line" pathLength="1" style="animation-delay:${i * 0.2}s" x1="${p.x + p.w}" y1="${p.y + p.h / 2}" x2="${cafe.x}" y2="${cafe.y + cafe.h / 2}"/>`).join('')}</g>` +
+  nodes.map((p, i) => {
+    const c = p.id === 'cafe';
+    return `<g class="node" data-id="${p.id}" style="animation-delay:${0.9 + i * 0.15}s" tabindex="0" role="button" aria-label="Open ${p.title}">
+      <rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="12" fill="var(--panel)" stroke="${c ? 'var(--rose)' : 'var(--line)'}" stroke-width="2"/>
+      <text x="${p.x + p.w / 2}" y="${c ? p.y + 32 : p.y + p.h / 2 + 4}" text-anchor="middle" fill="var(--ink)" font-size="${c ? 17 : 13}" font-weight="700">${p.short}</text>
+      ${c ? `<text x="${p.x + p.w / 2}" y="${p.y + 52}" text-anchor="middle" fill="var(--mute)" font-size="11">POS + HRMS + Inventory</text>` : ''}
+    </g>`;
+  }).join('');
+
+// Side panel
+function openPanel(id) {
+  const p = ALL.find(x => x.id === id);
+  $('panel').innerHTML =
+    `<button class="close" id="closeBtn">← Close</button>
+     <span class="rose" style="font-size:.875rem">${p.tag}</span>
+     <h3>${p.title}</h3>
+     <p class="mute" style="margin:0 0 1.5rem">${p.blurb}</p>
+     <h4>What it does</h4><ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+     <h4>Built with</h4><div class="chips">${chips(p.stack)}</div>
+     <a class="link" href="${p.repo}" target="_blank" rel="noreferrer">View on GitHub</a>`;
+  $('closeBtn').onclick = closePanel;
+  $('panel').classList.add('show'); $('overlay').classList.add('show');
+  $('panel').setAttribute('aria-hidden', 'false');
+}
+function closePanel() {
+  $('panel').classList.remove('show'); $('overlay').classList.remove('show');
+  $('panel').setAttribute('aria-hidden', 'true');
+}
+$('overlay').onclick = closePanel;
+document.addEventListener('keydown', e => e.key === 'Escape' && closePanel());
+document.addEventListener('click', e => { const t = e.target.closest('[data-id]'); if (t) openPanel(t.dataset.id); });
+document.addEventListener('keydown', e => {
+  const t = e.target.closest && e.target.closest('.node');
+  if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openPanel(t.dataset.id); }
+});
+
+// Copy email
+$('copy').onclick = () => navigator.clipboard?.writeText(ME.email).then(() => {
+  $('copy').textContent = 'copied'; setTimeout(() => $('copy').textContent = 'copy', 1500);
+});
+
+// Dark mode (dark by default)
+let dark = true;
+try { const s = localStorage.getItem('theme'); if (s) dark = s === 'dark'; } catch {}
+function applyTheme() {
+  document.documentElement.classList.toggle('dark', dark);
+  $('theme').textContent = dark ? '☀' : '☾';
+  try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch {}
+}
+$('theme').onclick = () => { dark = !dark; applyTheme(); };
+applyTheme();
+</script>
+</body>
+</html>
